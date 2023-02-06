@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 
 @Component({
   templateUrl: 'header.component.html',
@@ -6,5 +6,8 @@ import {Component} from "@angular/core";
 
 })
 export class HeaderComponent{
-
+   @Output() typeSelected= new EventEmitter<string>();
+   select(type:string){
+     this.typeSelected.emit(type)
+   }
 }

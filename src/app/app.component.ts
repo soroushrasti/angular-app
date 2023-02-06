@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular-app-udemy';
   name = "n";
+  selection:string='shopping';
+  selected(event: string) {
+    this.selection=event;
+
+  }
 }
