@@ -1,10 +1,11 @@
 <app-header (typeSelected)="selected($event)"></app-header>
 <div class="container">
+
+
+
   <div class="row">
     <div class="col-xs-12">
-      <p>{{selection}}</p>
-      <app-recepies *ngIf="selection === 'recipe'"></app-recepies>
-      <app-shopping-list *ngIf="selection=== 'shopping'"></app-shopping-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 

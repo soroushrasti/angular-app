@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Recipe} from "../recipe.model";
 import {RecipieService} from "../recipie.service";
+import {Route} from "@angular/router";
 
 @Component({
   selector: 'app-recipes-list',
@@ -16,7 +17,5 @@ export class RecipesListComponent implements OnInit {
     this.recipes=this.recipeService.getRecipes();
 
    }
-
-
 
 }

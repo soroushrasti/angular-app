@@ -6,8 +6,5 @@ import {Component, EventEmitter, Output} from "@angular/core";
 
 })
 export class HeaderComponent{
-   @Output() typeSelected= new EventEmitter<string>();
-   select(type:string){
-     this.typeSelected.emit(type)
-   }
+
 }
