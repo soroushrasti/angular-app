@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 import {HeaderComponent} from "./header/header.component";
 import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
@@ -17,6 +17,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import { SelectRecipeComponent } from './recepies/select-recipe/select-recipe.component';
 import { RecepieAddedComponent } from './recepies/recepie-added/recepie-added.component';
 import { RecepieEditeComponent } from './recepies/recepie-edite/recepie-edite.component';
+import {HttpClientModule} from "@angular/common/http";
+import {AuthComponent} from "./auth/auth.component";
+import {LoadingSpinnerComponent} from "./shared/loading-spiner/loading-spinner.component";
 
 @NgModule({
   declarations: [
@@ -31,14 +34,18 @@ import { RecepieEditeComponent } from './recepies/recepie-edite/recepie-edite.co
     DropdownDirective,
     SelectRecipeComponent,
     RecepieAddedComponent,
-    RecepieEditeComponent
+    RecepieEditeComponent,
+      AuthComponent,
+      LoadingSpinnerComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    RouterModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        RouterModule,
+        ReactiveFormsModule,
+        HttpClientModule
+    ],
   providers: [RecipieService, ShoppingListService],
   bootstrap: [AppComponent]
 })
