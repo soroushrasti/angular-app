@@ -6,8 +6,6 @@ export class ShoppingListService {
   startEditing= new Subject<number>();
 
   private ingredients: Ingredient[]=[
-    new Ingredient("tomato", 200),
-    new Ingredient("apple", 100)
   ];
 
   AddIngredient(event: Ingredient) {

@@ -15,20 +15,12 @@ export class DataStorageService{
 
     postRecipes(){
         let recipes= this.recipieService.getRecipes()
-         this.authService.user.pipe(take(1), exhaustMap(user=>{
-            return this.http.put<Recipe[]>(this.url,recipes, {
-                params: new HttpParams().set('auth',user.token)
-            })
-        })).subscribe()
+        return this.http.put<Recipe[]>(this.url,recipes).subscribe()
 
     }
 
     fetchRecipes(){
-        return this.authService.user.pipe(take(1), exhaustMap(user=>{
-            return this.http.get<Recipe[]>(this.url, {
-                params: new HttpParams().set('auth',user.token)
-            })
-        }))
+        return this.http.get<Recipe[]>(this.url)
             .pipe(map(recipes =>{
                 return recipes.map(recipe => {
                     return {...recipe, ingredients: recipe?.ingredients ? recipe.ingredients : []}

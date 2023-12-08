@@ -1,35 +1,16 @@
 import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
-import {AppComponent} from "./app.component";
-import {RecepiesComponent} from "./recepies/recepies.component";
-import {RecipeItemComponent} from "./recepies/recipes-list/recipe-item/recipe-item.component";
-import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
-import {ShoppingEditComponent} from "./shopping-list/shopping-edit/shopping-edit.component";
-import {RecipesDetailComponent} from "./recepies/recipes-detail/recipes-detail.component";
-import {SelectRecipeComponent} from "./recepies/select-recipe/select-recipe.component";
-import {RecepieAddedComponent} from "./recepies/recepie-added/recepie-added.component";
-import {RecepieEditeComponent} from "./recepies/recepie-edite/recepie-edite.component";
-import {RecipesResolverService} from "./recepies/recipes-resolver-service";
-import {AuthComponent} from "./auth/auth.component";
+import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
 const appRoutes: Routes= [
-  {path: '', redirectTo: '/recipes', pathMatch: "full"},
-  {path:'recipes', component: RecepiesComponent, children:[
-      {path: "", component: SelectRecipeComponent},
-      {path: "new", component: RecepieEditeComponent},
-      {path:":id", component: RecipesDetailComponent, resolve: [RecipesResolverService]},
-      {path: ":id/edit", component: RecepieEditeComponent, resolve: [RecipesResolverService]}
-    ]},
-  {path:'shopping-list', component: ShoppingListComponent, children:[
-      {path:":id/edit", component: ShoppingEditComponent}
-    ]},
-    {path:'auth', component: AuthComponent},
+    {path: '', redirectTo: '/recipes', pathMatch: "full"},
+    { path: 'recipes', loadChildren: () => import('./recipes-modules.module').then(m => m.RecipesModules) },
+    { path: 'shopping-list', loadChildren: () => import('./shopping-list.module').then(m => m.ShoppingListModule) },
+    { path: 'auth', loadChildren: () => import('./auth.module').then(m => m.AuthModule) }
 ]
 @NgModule({
  imports: [
-   RouterModule.forRoot(appRoutes)
+   RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
  ],
   exports:[RouterModule]
 })
 export class AppRoutingModule{
-
 }

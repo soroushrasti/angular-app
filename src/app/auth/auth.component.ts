@@ -13,7 +13,7 @@ export class AuthComponent {
     }
     isLoginMode= true;
     isLoading=false;
-    error: string=null;
+    error: string;
     opObs: Observable<AuthRes>
 
     switchAuthMethod(){
@@ -37,9 +37,15 @@ export class AuthComponent {
             },
             errorMessage=> {
                 this.isLoading=false;
+                console.log('onSubmitForm',errorMessage)
                 this.error=errorMessage;
             }
         )
         authForm.reset();
+    }
+
+    oneCloseHandler() {
+        this.error=null;
+
     }
 }
